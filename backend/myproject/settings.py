@@ -31,7 +31,6 @@ SECRET_KEY = "django-insecure-pa&t9y8_gsj#eh_(eusc-x#-83vk(5wx=_-e7ixk$&rsmgu@wn
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["*"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
