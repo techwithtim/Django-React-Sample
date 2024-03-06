@@ -3,10 +3,9 @@ import { ACCESS_TOKEN } from './constants.js';
 
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: window?.configs?.apiUrl ? window.configs.apiUrl : "/",
 });
 
-const API_KEY = import.meta.env.VITE_API_KEY
 
 
 api.interceptors.request.use(
@@ -15,7 +14,6 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    config.headers['API-Key'] = API_KEY;
     return config;
   },
   (error) => {
