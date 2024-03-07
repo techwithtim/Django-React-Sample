@@ -5,6 +5,7 @@ import { ACCESS_TOKEN } from './constants.js';
 const api = axios.create({
   baseURL: window?.configs?.apiUrl ? window.configs.apiUrl : "localhost:5000/",
 });
+console.log(window.configs.apiUrl,  window.configs.apiKey)
 
 const API_KEY = window?.configs?.apiKey ? window.configs.apiKey : ""
 
