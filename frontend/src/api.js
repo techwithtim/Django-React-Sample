@@ -3,11 +3,10 @@ import { ACCESS_TOKEN } from './constants.js';
 
 
 const api = axios.create({
-  baseURL: window?.configs?.apiUrl ? window.configs.apiUrl : "localhost:5000/",
+  baseURL: import.meta.env.VITE_API_URL,
 });
-console.log(window.configs.apiUrl,  window.configs.apiKey)
 
-const API_KEY = window?.configs?.apiKey ? window.configs.apiKey : ""
+const API_KEY = import.meta.env.VITE_API_KEY
 
 
 api.interceptors.request.use(
