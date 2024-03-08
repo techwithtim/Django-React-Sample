@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { ACCESS_TOKEN } from './constants.js';
 
+const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : "/";
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: apiUrl ? apiUrl : import.meta.env.VITE_API_URL,
 });
 
+console.log(apiUrl)
 
 api.interceptors.request.use(
   (config) => {
