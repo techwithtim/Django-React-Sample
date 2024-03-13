@@ -43,6 +43,7 @@ form label {
   margin-top: 10px;
 }
 
+form input,
 form textarea {
   width: 100%;
   padding: 8px;
