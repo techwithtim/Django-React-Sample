@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import "../styles/FormStyles.css";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 function Form({ route, method }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDetfault();
+        setLoading(true)
         try {
             const res = await api.post(route, { username, password });
             if (method === "login") {
@@ -21,24 +25,32 @@ function Form({ route, method }) {
             }
         } catch (error) {
             alert(error);
+        } finally {
+            setLoading(false)
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-container">
+            <h1>{method === "login" ? "Login" : "Register"}</h1>
             <input
+                className="form-input"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
             />
             <input
+                className="form-input"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
-            <button type="submit">{method === "login" ? "Login" : "Register"}</button>
+            {loading && <LoadingIndicator />}
+            <button className="form-button" type="submit">
+                {method === "login" ? "Login" : "Register"}
+            </button>
         </form>
     );
 }
