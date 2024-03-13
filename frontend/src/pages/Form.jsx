@@ -10,7 +10,7 @@ function Form({ route, method }) {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDetfault();
+        e.preventDefault();
         try {
             const res = await api.post(route, { username, password });
             if (method === "login") {
